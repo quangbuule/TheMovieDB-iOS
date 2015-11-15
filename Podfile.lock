@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (3.1.2)
+  - AlamofireImage (2.1.0):
+    - Alamofire (~> 3.1)
+  - ReachabilitySwift (2.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - AlamofireImage (~> 2.0)
+  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
+
+EXTERNAL SOURCES:
+  ReachabilitySwift:
+    :git: https://github.com/ashleymills/Reachability.swift
+
+CHECKOUT OPTIONS:
+  ReachabilitySwift:
+    :commit: 79db5bad2de77c5c5cb4718e1c793bc461f7b3e2
+    :git: https://github.com/ashleymills/Reachability.swift
+
+SPEC CHECKSUMS:
+  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
+  AlamofireImage: 97e00995920d85b5cb23ee4c3b7f92605f5dc74b
+  ReachabilitySwift: 6a9167003197e618a4430ee43d79918fae1fcc8c
+
+COCOAPODS: 0.39.0
