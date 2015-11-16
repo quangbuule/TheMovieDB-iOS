@@ -31,11 +31,11 @@ class Movie {
   
   var id: Int
   var title: String
-  var synopsis: String
+  var synopsis: String?
   var posterPath: String?
   var backdropPath: String?
   var voteAverage: Float?
-  var voteCount: Int = 0
+  var voteCount: Int?
   var releaseDate: NSDate?
   var runtime: Int?
   var genres: [String]?
@@ -44,9 +44,13 @@ class Movie {
   var releaseYear: Int {
     get {
       let calendar = NSCalendar.currentCalendar()
-      let components = calendar.components(.Year, fromDate: self.releaseDate!)
       
-      return components.year
+      if let releaseDate = self.releaseDate {
+        let components = calendar.components(.Year, fromDate: releaseDate)
+        return components.year
+      } else {
+        return 0
+      }
     }
   }
   
@@ -78,11 +82,11 @@ class Movie {
     
     self.id = rawData["id"] as! Int
     self.title = rawData["title"] as! String
-    self.synopsis = rawData["overview"] as! String
+    self.synopsis = rawData["overview"] as? String
     self.posterPath = rawData["poster_path"] as? String
     self.backdropPath = rawData["backdrop_path"] as? String
     self.voteAverage = rawData["vote_average"] as? Float
-    self.voteCount = rawData["vote_count"] as! Int
+    self.voteCount = rawData["vote_count"] as? Int
     self.releaseDate = dateFormater.dateFromString(rawData["release_date"] as! String)
   }
   
@@ -135,11 +139,18 @@ class Movie {
 
 class MovieCollection {
   
+  enum Type: Int {
+    case Popular = 1
+    case TopRated = 2
+    case Search = 3
+  }
+  
   var movies = [Movie]()
   
   var fetching: Bool = false
   var failed: Bool = false
   var done: Bool = false
+  var type: Type = .Popular
   
   private var requestURLString = "\(APIURLPrefix)/discover/movie"
   private var parameters: Dictionary<String, AnyObject> = [
@@ -157,6 +168,14 @@ class MovieCollection {
   init(searchFor: String) {
     requestURLString = "\(APIURLPrefix)/search/movie"
     parameters["query"] = searchFor
+    type = .Search
+  }
+  
+  init(topRated: Bool) {
+    if (topRated) {
+      parameters["sort_by"] = "vote_average.desc"
+      type = .TopRated
+    }
   }
   
   init() {}
@@ -168,6 +187,9 @@ class MovieCollection {
     }
     
     fetching = true
+    
+    parameters["page"] = nil
+    currentPage = -1
     
     let request = {() -> Alamofire.Request in
       let mutableRequest = Alamofire.request(.GET, self.requestURLString, parameters: self.parameters)

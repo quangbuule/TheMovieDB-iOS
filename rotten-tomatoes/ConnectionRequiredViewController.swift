@@ -16,7 +16,7 @@ class ConnectionRequiredViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    connectionErrorView.frame = CGRectMake(0, view.frame.height - 30, view.frame.width, 30)
+    connectionErrorView.frame = CGRectMake(0, view.frame.height - 80, view.frame.width, 30)
     connectionErrorView.backgroundColor = colors["dangerColor"]
 
     let label = UILabel()
@@ -55,7 +55,6 @@ class ConnectionRequiredViewController: UIViewController {
         delay: 0,
         options: .CurveEaseOut,
         animations: {
-          print("ASDSAD")
           self.connectionErrorView.frame.origin.y -= 40
         },
         completion: { _ in }

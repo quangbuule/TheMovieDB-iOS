@@ -23,6 +23,7 @@
 		588DA7601BF8BE7C009C08E7 /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588DA75F1BF8BE7C009C08E7 /* MovieCollectionCell.swift */; };
 		588DA7621BF8C05E009C08E7 /* MovieCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588DA7611BF8C05E009C08E7 /* MovieCollectionView.swift */; };
 		588DA7661BF8DF2D009C08E7 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588DA7651BF8DF2D009C08E7 /* images.xcassets */; };
+		588DA7681BF95489009C08E7 /* MovieTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588DA7671BF95489009C08E7 /* MovieTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		588DA75F1BF8BE7C009C08E7 /* MovieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionCell.swift; sourceTree = "<group>"; };
 		588DA7611BF8C05E009C08E7 /* MovieCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionView.swift; sourceTree = "<group>"; };
 		588DA7651BF8DF2D009C08E7 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		588DA7671BF95489009C08E7 /* MovieTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTabBarController.swift; sourceTree = "<group>"; };
 		888261320EC8EDAD0ACF8B5E /* Pods-rotten-tomatoes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rotten-tomatoes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rotten-tomatoes/Pods-rotten-tomatoes.debug.xcconfig"; sourceTree = "<group>"; };
 		BCE4315A1D84686C9C67B320 /* Pods_rotten_tomatoes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rotten_tomatoes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BFBE78416F11F8A0488F41 /* Pods-rotten-tomatoes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rotten-tomatoes.release.xcconfig"; path = "Pods/Target Support Files/Pods-rotten-tomatoes/Pods-rotten-tomatoes.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				588DA75F1BF8BE7C009C08E7 /* MovieCollectionCell.swift */,
 				588DA7611BF8C05E009C08E7 /* MovieCollectionView.swift */,
 				588DA7651BF8DF2D009C08E7 /* images.xcassets */,
+				588DA7671BF95489009C08E7 /* MovieTabBarController.swift */,
 			);
 			path = "rotten-tomatoes";
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				5887BD8E1BF0D1E9002F387E /* MovieListCell.swift in Sources */,
 				588DA75E1BF87BEB009C08E7 /* ConnectionRequiredViewController.swift in Sources */,
 				588DA7581BF74808009C08E7 /* MovieDetailView.swift in Sources */,
+				588DA7681BF95489009C08E7 /* MovieTabBarController.swift in Sources */,
 				588DA7601BF8BE7C009C08E7 /* MovieCollectionCell.swift in Sources */,
 				588DA74E1BF63058009C08E7 /* MovieListView.swift in Sources */,
 				588DA7621BF8C05E009C08E7 /* MovieCollectionView.swift in Sources */,

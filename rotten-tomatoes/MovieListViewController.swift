@@ -19,25 +19,22 @@ class MovieListViewController: ConnectionRequiredViewController, UITableViewData
   let refreshControl = UIRefreshControl()
   let loadingMoreIndicator = UIActivityIndicatorView()
   var movieCollection = MovieCollection()
-  
   var currentListView: UIScrollView?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let nav = self.navigationController?.navigationBar
-    
-    title = "Popular"
+    navigationController?.navigationBar.barStyle = .Black
     
     loadingMoreIndicator.color = colors["lightColor"]
     loadingMoreIndicator.frame = CGRectMake(0, 0, tableView.frame.width, 44)
     
-    viewTypeToggle.image = UIImage(named: "collection-button")
+    viewTypeToggle.image = UIImage(named: "collection-view-icon")
     viewTypeToggle.title = nil
     
     refreshControl.tintColor = colors["grayColor"]
     refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-    
+
     searchBar.tintColor = colors["grayColor"]
     searchBar.barStyle = .Black
     searchBar.placeholder = "Find your favorite movie..."
@@ -49,11 +46,6 @@ class MovieListViewController: ConnectionRequiredViewController, UITableViewData
     
     collectionView.dataSource = self
     collectionView.delegate = self
-    collectionView.frame = view.bounds
-    
-    
-    nav?.barStyle = UIBarStyle.Black
-    nav?.backgroundColor = colors["primaryBackgroundColor"]
     
     useTableView()
     
@@ -82,6 +74,8 @@ class MovieListViewController: ConnectionRequiredViewController, UITableViewData
     tableView.addSubview(searchBar)
     tableView.contentInset = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: 0, right: 0)
     
+    viewTypeToggle.image = UIImage(named: "collection-view-icon")
+    
     currentListView = tableView
     
     reloadData()
@@ -98,6 +92,8 @@ class MovieListViewController: ConnectionRequiredViewController, UITableViewData
     collectionView.addSubview(refreshControl)
     collectionView.addSubview(searchBar)
     collectionView.contentInset = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: 0, right: 0)
+    
+    viewTypeToggle.image = UIImage(named: "list-view-icon")
     
     currentListView = collectionView
     
@@ -147,7 +143,7 @@ class MovieListViewController: ConnectionRequiredViewController, UITableViewData
   }
   
   func scrollToTop(animated: Bool) {
-    currentListView!.scrollRectToVisible(CGRectMake(0, searchBar.frame.height, 100, 100), animated: animated)
+    currentListView!.setContentOffset(CGPoint(x:0, y: -topLayoutGuide.length), animated: animated)
   }
   
   func reloadData() {
@@ -157,6 +153,20 @@ class MovieListViewController: ConnectionRequiredViewController, UITableViewData
     
     if currentListView == collectionView {
       collectionView.reloadData()
+    }
+    
+    switch movieCollection.type {
+    case .Popular:
+      title = "Popular"
+      break;
+    
+    case .Search:
+      title = "Search"
+      break;
+      
+    case .TopRated:
+      title = "Top Rated"
+      break;
     }
   }
   
@@ -210,10 +220,10 @@ class MovieListViewController: ConnectionRequiredViewController, UITableViewData
   
   func refresh(sender: AnyObject) {
     refreshControl.beginRefreshing()
-    movieCollection = MovieCollection()
+    
     fetchMovies() {
       self.refreshControl.endRefreshing()
-      self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
+      self.scrollToTop(true)
     }
   }
   
